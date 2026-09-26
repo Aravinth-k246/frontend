@@ -7,6 +7,8 @@ const { Server } = require('socket.io');
 const cors = require('cors');
 const morgan = require('morgan');
 const path = require('path');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
 
 // ---------------------------------------------------------------------------
 // Route imports
@@ -37,7 +39,18 @@ module.exports.io = io;
 // ---------------------------------------------------------------------------
 // Middleware
 // ---------------------------------------------------------------------------
-app.use(cors());
+app.use(cors({ origin: '*' })); // Should ideally be restricted in production
+app.use(helmet()); // Sets robust security headers
+
+// Configure rate limiting
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+app.use('/api', limiter);
+
 app.use(morgan('dev'));
 app.use(express.json());
 

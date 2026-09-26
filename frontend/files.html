@@ -586,12 +586,12 @@
         </select>
 
         <!-- Direct Folder Upload Button -->
-        <button class="btn btn-secondary" onclick="triggerFolderPicker()" style="border-color: rgba(255, 107, 53, 0.4);">
+        <button class="btn btn-secondary" onclick="triggerFolderPicker()" style="border-color: rgba(255, 107, 53, 0.4);" aria-label="Secondary Action">
           <span>📁</span> Upload Folder
         </button>
 
         <!-- Direct File Upload Button -->
-        <button class="btn btn-primary" onclick="triggerFilePicker()">
+        <button class="btn btn-primary" onclick="triggerFilePicker()" aria-label="Primary Action">
           <span>📤</span> Upload Document / Video
         </button>
       </div>
@@ -614,13 +614,13 @@
       </div>
 
       <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-        <button class="btn btn-primary" onclick="downloadCurrentFolderZip()">
+        <button class="btn btn-primary" onclick="downloadCurrentFolderZip()" aria-label="Primary Action">
           <span>📦</span> Download Entire Folder (.zip)
         </button>
-        <button class="btn btn-secondary" onclick="triggerFilePicker()">
+        <button class="btn btn-secondary" onclick="triggerFilePicker()" aria-label="Secondary Action">
           <span>➕</span> Add File to this Folder
         </button>
-        <button class="btn btn-secondary" onclick="navigateToFolder(null)">
+        <button class="btn btn-secondary" onclick="navigateToFolder(null)" aria-label="Secondary Action">
           <span>⬅️</span> Back to All Folders
         </button>
       </div>
@@ -676,7 +676,7 @@
   <div class="drawer" id="fileDrawer" role="dialog" aria-modal="true">
     <div class="drawer-header">
       <h3 id="drawerTitle" style="font-size: 18px; font-weight: 800;">Object Details</h3>
-      <button style="background: none; border: none; color: var(--text-muted); font-size: 20px; cursor: pointer;" onclick="closeDrawer()">✕</button>
+      <button style="background: none; border: none; color: var(--text-muted); font-size: 20px; cursor: pointer;" onclick="closeDrawer()" aria-label="button">✕</button>
     </div>
     <div id="drawerContent"></div>
   </div>
@@ -697,7 +697,7 @@
     </div>
 
     <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 24px;">
-      <button class="btn btn-secondary" onclick="closeUploadModal()">Close</button>
+      <button class="btn btn-secondary" onclick="closeUploadModal()" aria-label="Secondary Action">Close</button>
     </div>
   </div>
 
@@ -720,7 +720,7 @@
     </div>
 
     <div style="display: flex; justify-content: flex-end;">
-      <button class="btn btn-secondary" disabled>Uploading to Cluster...</button>
+      <button class="btn btn-secondary" disabled aria-label="Secondary Action">Uploading to Cluster...</button>
     </div>
   </div>
 
@@ -860,8 +860,8 @@
               </div>
             </div>
             <div class="folder-card-actions" onclick="event.stopPropagation()">
-              <button class="btn btn-sm btn-secondary" onclick="downloadFolderZip('${folder.id}')" title="Download Entire Folder as .ZIP Archive">📦 ZIP</button>
-              <button class="btn btn-sm btn-secondary" style="color: var(--danger); border-color: rgba(255,23,68,0.25);" onclick="deleteFolder('${folder.id}')" title="Delete Folder & Contained Files">🗑️</button>
+              <button class="btn btn-sm btn-secondary" onclick="downloadFolderZip('${folder.id}')" title="Download Entire Folder as .ZIP Archive" aria-label="Secondary Action">📦 ZIP</button>
+              <button class="btn btn-sm btn-secondary" style="color: var(--danger); border-color: rgba(255,23,68,0.25);" onclick="deleteFolder('${folder.id}')" title="Delete Folder & Contained Files" aria-label="Secondary Action">🗑️</button>
             </div>
           `;
           container.appendChild(card);
@@ -918,7 +918,7 @@
             <div style="font-size: 38px; margin-bottom: 10px;">📂</div>
             <div style="font-weight: 700; font-size: 16px; color: var(--text);">No storage objects found</div>
             <div style="font-size: 13.5px; margin-top: 6px; margin-bottom: 18px;">Click "📤 Upload Document / Video" or "📁 Upload Folder" to distribute data across the 9 nodes.</div>
-            <button class="btn btn-primary btn-sm" onclick="triggerFilePicker()"><span>📤</span> Upload File Now</button>
+            <button class="btn btn-primary btn-sm" onclick="triggerFilePicker()" aria-label="Primary Action"><span>📤</span> Upload File Now</button>
           </div>
         `;
         return;
@@ -964,16 +964,16 @@
               </div>
 
               <div class="file-card-actions" onclick="event.stopPropagation()">
-                <button class="card-action-btn" onclick="window.vaultStore.downloadFile('${fileId}')" title="Download Real Reassembled File">
+                <button class="card-action-btn" onclick="window.vaultStore.downloadFile('${fileId}')" title="Download Real Reassembled File" aria-label="button">
                   <span style="color: #38BDF8;">⬇️</span> Download
                 </button>
-                <button class="card-action-btn" onclick="verifyFile('${fileId}')" title="Verify SHA-256 Checksums">
+                <button class="card-action-btn" onclick="verifyFile('${fileId}')" title="Verify SHA-256 Checksums" aria-label="button">
                   <span style="color: #A855F7;">🔍</span> Verify
                 </button>
-                <button class="card-action-btn" onclick="shareFile('${fileId}')" title="Copy Share Link">
+                <button class="card-action-btn" onclick="shareFile('${fileId}')" title="Copy Share Link" aria-label="button">
                   <span style="color: #EC4899;">🔗</span> Share
                 </button>
-                <button class="card-action-btn btn-delete" onclick="deleteFile('${fileId}')" title="Delete Object">
+                <button class="card-action-btn btn-delete" onclick="deleteFile('${fileId}')" title="Delete Object" aria-label="button">
                   🗑️
                 </button>
               </div>
@@ -1018,10 +1018,10 @@
               </td>
               <td onclick="event.stopPropagation()">
                 <div style="display: flex; gap: 6px;">
-                  <button class="card-action-btn" onclick="window.vaultStore.downloadFile('${fileId}')" title="Download">⬇️ Download</button>
-                  <button class="card-action-btn" onclick="verifyFile('${fileId}')" title="Verify">🔍</button>
-                  <button class="card-action-btn" onclick="shareFile('${fileId}')" title="Share">🔗</button>
-                  <button class="card-action-btn btn-delete" onclick="deleteFile('${fileId}')" title="Delete">🗑️</button>
+                  <button class="card-action-btn" onclick="window.vaultStore.downloadFile('${fileId}')" title="Download" aria-label="button">⬇️ Download</button>
+                  <button class="card-action-btn" onclick="verifyFile('${fileId}')" title="Verify" aria-label="button">🔍</button>
+                  <button class="card-action-btn" onclick="shareFile('${fileId}')" title="Share" aria-label="button">🔗</button>
+                  <button class="card-action-btn btn-delete" onclick="deleteFile('${fileId}')" title="Delete" aria-label="button">🗑️</button>
                 </div>
               </td>
             `;
@@ -1294,8 +1294,8 @@
         ${chunkListHTML}
 
         <div style="margin-top: 28px; display: flex; flex-direction: column; gap: 10px;">
-          <button class="btn btn-primary" onclick="window.vaultStore.downloadFile('${fileId}')">⬇️ Download Reassembled Payload</button>
-          <button class="btn btn-secondary" onclick="verifyFile('${fileId}')">🔍 Run Deep SHA-256 Verification</button>
+          <button class="btn btn-primary" onclick="window.vaultStore.downloadFile('${fileId}')" aria-label="Primary Action">⬇️ Download Reassembled Payload</button>
+          <button class="btn btn-secondary" onclick="verifyFile('${fileId}')" aria-label="Secondary Action">🔍 Run Deep SHA-256 Verification</button>
         </div>
       `;
 

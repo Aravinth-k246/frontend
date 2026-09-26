@@ -259,7 +259,7 @@
         <h2 style="font-size: 20px; font-weight: 800; margin: 8px 0 4px;">Disaster Recovery & Chaos Injection Lab</h2>
         <p style="font-size: 13px; color: var(--text-muted);">Test node crashes, partial network partitions, and on-disk bit rot. Observe sub-second auto-repair.</p>
       </div>
-      <button class="btn btn-secondary" onclick="restoreAll()">🔄 Restore All Nodes</button>
+      <button class="btn btn-secondary" onclick="restoreAll()" aria-label="Secondary Action">🔄 Restore All Nodes</button>
     </div>
 
     <div class="chaos-grid">
@@ -278,8 +278,8 @@
               </div>
             </div>
             <div style="display: flex; gap: 6px;">
-              <button class="btn btn-sm btn-danger" id="btnKill1" onclick="killNode(1, 'Node Alpha')">☠️ Kill Node</button>
-              <button class="btn btn-sm btn-secondary" onclick="injectLatency(1, 'Node Alpha')">⏱️ +2000ms</button>
+              <button class="btn btn-sm btn-danger" id="btnKill1" onclick="killNode(1, 'Node Alpha')" aria-label="button">☠️ Kill Node</button>
+              <button class="btn btn-sm btn-secondary" onclick="injectLatency(1, 'Node Alpha')" aria-label="Secondary Action">⏱️ +2000ms</button>
             </div>
           </div>
 
@@ -292,8 +292,8 @@
               </div>
             </div>
             <div style="display: flex; gap: 6px;">
-              <button class="btn btn-sm btn-danger" id="btnKill2" onclick="killNode(2, 'Node Beta')">☠️ Kill Node</button>
-              <button class="btn btn-sm btn-secondary" onclick="injectLatency(2, 'Node Beta')">⏱️ +2000ms</button>
+              <button class="btn btn-sm btn-danger" id="btnKill2" onclick="killNode(2, 'Node Beta')" aria-label="button">☠️ Kill Node</button>
+              <button class="btn btn-sm btn-secondary" onclick="injectLatency(2, 'Node Beta')" aria-label="Secondary Action">⏱️ +2000ms</button>
             </div>
           </div>
 
@@ -306,8 +306,8 @@
               </div>
             </div>
             <div style="display: flex; gap: 6px;">
-              <button class="btn btn-sm btn-danger" id="btnKill3" onclick="killNode(3, 'Node Gamma')">☠️ Kill Node</button>
-              <button class="btn btn-sm btn-secondary" onclick="injectLatency(3, 'Node Gamma')">⏱️ +2000ms</button>
+              <button class="btn btn-sm btn-danger" id="btnKill3" onclick="killNode(3, 'Node Gamma')" aria-label="button">☠️ Kill Node</button>
+              <button class="btn btn-sm btn-secondary" onclick="injectLatency(3, 'Node Gamma')" aria-label="Secondary Action">⏱️ +2000ms</button>
             </div>
           </div>
         </div>
@@ -324,7 +324,7 @@
               <option>financial_ledger_2025.zip</option>
             </select>
           </div>
-          <button class="btn btn-danger" style="width: 100%;" onclick="injectBitRot()">Corrupt Chunk #1 on Node Beta</button>
+          <button class="btn btn-danger" style="width: 100%;" onclick="injectBitRot()" aria-label="button">Corrupt Chunk #1 on Node Beta</button>
         </div>
       </div>
 
@@ -332,7 +332,7 @@
       <div class="panel-card">
         <div class="panel-header">
           <div class="panel-title"><span>📡</span> Autonomous Self-Healing Log Stream</div>
-          <button class="btn btn-sm btn-secondary" onclick="clearLog()">Clear</button>
+          <button class="btn btn-sm btn-secondary" onclick="clearLog()" aria-label="Secondary Action">Clear</button>
         </div>
         <div class="healing-log-box" id="healingLog">
           <div class="log-entry"><span class="log-time">[00:00:01]</span><span class="log-msg info">Scrubber daemon online. 9/9 nodes responding OK.</span></div>

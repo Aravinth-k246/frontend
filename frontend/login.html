@@ -321,7 +321,7 @@
         <input type="password" class="form-input" id="passwordInput" placeholder="••••••••••••" required value="vault-cluster-2026" />
       </div>
 
-      <button type="submit" class="btn btn-primary" id="submitBtn">
+      <button type="submit" class="btn btn-primary" id="submitBtn" aria-label="Primary Action">
         <span>🚀 Sign In to Cluster</span>
       </button>
     </form>
@@ -329,15 +329,15 @@
     <div class="divider">OR CHOOSE 1-CLICK DEMO PROFILE</div>
 
     <div class="quick-logins">
-      <button class="quick-btn" onclick="quickLogin('Cluster Architect', 'admin@vault.io', 'Storage Architect')">
+      <button class="quick-btn" onclick="quickLogin('Cluster Architect', 'admin@vault.io', 'Storage Architect')" aria-label="button">
         <span>👑 Storage Architect</span>
         <span class="quick-btn-badge">Full Access</span>
       </button>
-      <button class="quick-btn" onclick="quickLogin('Chaos Engineer', 'chaos@vault.io', 'Chaos Specialist')">
+      <button class="quick-btn" onclick="quickLogin('Chaos Engineer', 'chaos@vault.io', 'Chaos Specialist')" aria-label="button">
         <span>⚡ Chaos Engineer</span>
         <span class="quick-btn-badge">Lab Access</span>
       </button>
-      <button class="quick-btn" onclick="quickLogin('Dev Operator', 'demo@vault.io', 'Read / Write')">
+      <button class="quick-btn" onclick="quickLogin('Dev Operator', 'demo@vault.io', 'Read / Write')" aria-label="button">
         <span>👨‍💻 Developer Operator</span>
         <span class="quick-btn-badge">Standard</span>
       </button>

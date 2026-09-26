@@ -262,8 +262,8 @@
       </div>
 
       <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-        <button class="btn btn-secondary" onclick="runHealthCheck()">🔍 Ping All Nodes</button>
-        <button class="btn btn-primary" onclick="openAddNodeModal()">+ Add Storage Node</button>
+        <button class="btn btn-secondary" onclick="runHealthCheck()" aria-label="Secondary Action">🔍 Ping All Nodes</button>
+        <button class="btn btn-primary" onclick="openAddNodeModal()" aria-label="Primary Action">+ Add Storage Node</button>
       </div>
     </div>
 
@@ -364,8 +364,8 @@
           <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: ${20 + idx * 4}%;"></div></div>
 
           <div style="display: flex; gap: 8px;">
-            <button class="btn btn-sm btn-secondary" style="flex: 1;" onclick="inspectChunks('${node.name}', ${24 + (idx % 5)})">📦 Inspect</button>
-            <button class="btn btn-sm btn-secondary" onclick="restartNode('${node.name}')">🔄 Reboot</button>
+            <button class="btn btn-sm btn-secondary" style="flex: 1;" onclick="inspectChunks('${node.name}', ${24 + (idx % 5)})" aria-label="Secondary Action">📦 Inspect</button>
+            <button class="btn btn-sm btn-secondary" onclick="restartNode('${node.name}')" aria-label="Secondary Action">🔄 Reboot</button>
           </div>
         `;
         grid.appendChild(card);
