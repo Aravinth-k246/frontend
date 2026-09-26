@@ -8,10 +8,13 @@
  *
  * Prerequisites:
  *   1. The gateway server must be running:      npm start
- *   2. All three storage nodes must be running:
+ *   2. All six storage nodes must be running:
  *        npm run node1
  *        npm run node2
  *        npm run node3
+ *        npm run node4
+ *        npm run node5
+ *        npm run node6
  *
  * Usage:
  *   node scripts/register-nodes.js
@@ -27,17 +30,32 @@ const TEN_GB          = 10 * 1024 * 1024 * 1024; // 10 737 418 240 bytes
 const NODES_TO_REGISTER = [
   {
     nodeUrl:       'http://localhost:9001',
-    nodeName:      'Node Alpha',
+    nodeName:      'vault-node-1',
     totalCapacity: TEN_GB,
   },
   {
     nodeUrl:       'http://localhost:9002',
-    nodeName:      'Node Beta',
+    nodeName:      'vault-node-2',
     totalCapacity: TEN_GB,
   },
   {
     nodeUrl:       'http://localhost:9003',
-    nodeName:      'Node Gamma',
+    nodeName:      'vault-node-3',
+    totalCapacity: TEN_GB,
+  },
+  {
+    nodeUrl:       'http://localhost:9004',
+    nodeName:      'vault-node-4',
+    totalCapacity: TEN_GB,
+  },
+  {
+    nodeUrl:       'http://localhost:9005',
+    nodeName:      'vault-node-5',
+    totalCapacity: TEN_GB,
+  },
+  {
+    nodeUrl:       'http://localhost:9006',
+    nodeName:      'vault-node-6',
     totalCapacity: TEN_GB,
   },
 ];
@@ -103,9 +121,9 @@ async function main() {
 
   if (failCount > 0) {
     console.log('\n  Troubleshooting tips:');
-    console.log('    • Run "npm run node1", "npm run node2", "npm run node3"');
+    console.log('    • Run "npm run node1" through "npm run node6"');
     console.log('      in separate terminals BEFORE running this script.');
-    console.log('    • Check that the storage node ports (9001-9003) are free.');
+    console.log('    • Check that the storage node ports (9001-9006) are free.');
     console.log('    • Ensure the gateway (npm start) started without errors.');
   }
 
