@@ -6,58 +6,75 @@
   <title>Chaos Engineering Studio — Vault Distributed Storage</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <script src="vault-storage.js"></script>
   <style>
+    
+    /* ============================================================
+       VAULT DISTINCTIVE PALETTE — PRODUCTION GRADE
+       ============================================================ */
     :root {
-      --primary: #FF6B35;
-      --primary-hover: #E85A24;
-      --secondary: #8B5CF6;
-      --accent: #EC4899;
-      --success: #10B981;
+      --bg: #0a0e27;
+      --surface: #0f1629;
+      --border: rgba(255, 255, 255, 0.05);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --cyan: #00d9ff;
+      --purple: #7b2cbf;
+      --emerald: #10b981;
+      
+      --primary: var(--cyan);
+      --primary-hover: #00b8d9;
+      --primary-glow: rgba(0, 217, 255, 0.4);
+      --secondary: var(--purple);
+      --accent: var(--cyan);
+      --success: var(--emerald);
       --warning: #F59E0B;
       --danger: #EF4444;
-      --info: #3B82F6;
 
-      --bg: #0D1117;
-      --bg-card: rgba(22, 27, 34, 0.85);
-      --bg-card-hover: rgba(30, 37, 48, 0.95);
-      --surface: #161B22;
-      --surface-border: rgba(255, 107, 53, 0.18);
-      --surface-border-hover: rgba(239, 68, 68, 0.35);
-      --text: #F0F6FC;
-      --text-muted: #8B949E;
-      --text-dim: #6B7280;
-      --glass: rgba(18, 21, 31, 0.75);
-      --glass-blur: blur(24px);
-      --gradient-brand: linear-gradient(135deg, #FF6B35 0%, #F59E0B 50%, #8B5CF6 100%);
-      --shadow-card: 0 14px 40px -6px rgba(0, 0, 0, 0.45);
-      --radius-sm: 8px;
-      --radius-md: 14px;
-      --radius-lg: 20px;
-      --sidebar-w: 260px;
-      --font: 'Plus Jakarta Sans', sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
+      --bg-dark: var(--bg);
+      --surface-color: var(--surface);
+      --border-color: var(--border);
+      --text-primary: var(--text-main);
+      --text-secondary: var(--text-muted);
+      --text-tertiary: #64748b;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.5);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.5);
+      --shadow-lg: 0 10px 15px rgba(0,0,0,0.5);
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+      --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      
+      /* Base scale */
+      --spacing-1: 4px;
+      --spacing-2: 8px;
+      --spacing-3: 12px;
+      --spacing-4: 16px;
+      --spacing-6: 24px;
+      --spacing-8: 32px;
+      --spacing-12: 48px;
+      --spacing-16: 64px;
     }
 
-    [data-theme="light"] {
-      --bg: #F4F6F8;
-      --bg-card: rgba(255, 255, 255, 0.95);
-      --surface: #FFFFFF;
-      --surface-border: rgba(255, 107, 53, 0.2);
-      --text: #1F2937;
-      --text-muted: #6B7280;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: var(--font);
       background-color: var(--bg);
-      color: var(--text);
+      color: var(--text-main);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 0;
       min-height: 100vh;
-      display: flex;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
+      line-height: 1.5;
     }
+    
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
 
     .ambient-bg {
       position: fixed;
@@ -291,13 +308,13 @@
             <div style="display: flex; align-items: center; gap: 12px;">
               <div class="node-status-dot" id="dot1"></div>
               <div>
-                <strong style="font-size: 14px;">Node Alpha</strong>
+                <strong style="font-size: 14px;">vault-node-1</strong>
                 <div style="font-size: 11px; color: var(--text-muted);">Port: 9001 · 28 Chunks</div>
               </div>
             </div>
             <div style="display: flex; gap: 6px;">
-              <button class="btn btn-sm btn-danger" id="btnKill1" onclick="killNode(1, 'Node Alpha')" aria-label="button">☠️ Kill Node</button>
-              <button class="btn btn-sm btn-secondary" onclick="injectLatency(1, 'Node Alpha')" aria-label="Secondary Action">⏱️ +2000ms</button>
+              <button class="btn btn-sm btn-danger" id="btnKill1" onclick="killNode(1, 'vault-node-1')" aria-label="button">☠️ Kill Node</button>
+              <button class="btn btn-sm btn-secondary" onclick="injectLatency(1, 'vault-node-1')" aria-label="Secondary Action">⏱️ +2000ms</button>
             </div>
           </div>
 
@@ -305,13 +322,13 @@
             <div style="display: flex; align-items: center; gap: 12px;">
               <div class="node-status-dot" id="dot2"></div>
               <div>
-                <strong style="font-size: 14px;">Node Beta</strong>
+                <strong style="font-size: 14px;">vault-node-2</strong>
                 <div style="font-size: 11px; color: var(--text-muted);">Port: 9002 · 28 Chunks</div>
               </div>
             </div>
             <div style="display: flex; gap: 6px;">
-              <button class="btn btn-sm btn-danger" id="btnKill2" onclick="killNode(2, 'Node Beta')" aria-label="button">☠️ Kill Node</button>
-              <button class="btn btn-sm btn-secondary" onclick="injectLatency(2, 'Node Beta')" aria-label="Secondary Action">⏱️ +2000ms</button>
+              <button class="btn btn-sm btn-danger" id="btnKill2" onclick="killNode(2, 'vault-node-2')" aria-label="button">☠️ Kill Node</button>
+              <button class="btn btn-sm btn-secondary" onclick="injectLatency(2, 'vault-node-2')" aria-label="Secondary Action">⏱️ +2000ms</button>
             </div>
           </div>
 
@@ -319,13 +336,55 @@
             <div style="display: flex; align-items: center; gap: 12px;">
               <div class="node-status-dot" id="dot3"></div>
               <div>
-                <strong style="font-size: 14px;">Node Gamma</strong>
+                <strong style="font-size: 14px;">vault-node-3</strong>
                 <div style="font-size: 11px; color: var(--text-muted);">Port: 9003 · 27 Chunks</div>
               </div>
             </div>
             <div style="display: flex; gap: 6px;">
-              <button class="btn btn-sm btn-danger" id="btnKill3" onclick="killNode(3, 'Node Gamma')" aria-label="button">☠️ Kill Node</button>
-              <button class="btn btn-sm btn-secondary" onclick="injectLatency(3, 'Node Gamma')" aria-label="Secondary Action">⏱️ +2000ms</button>
+              <button class="btn btn-sm btn-danger" id="btnKill3" onclick="killNode(3, 'vault-node-3')" aria-label="button">☠️ Kill Node</button>
+              <button class="btn btn-sm btn-secondary" onclick="injectLatency(3, 'vault-node-3')" aria-label="Secondary Action">⏱️ +2000ms</button>
+            </div>
+          </div>
+          
+          <div class="node-row" id="rowNode4">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <div class="node-status-dot" id="dot4"></div>
+              <div>
+                <strong style="font-size: 14px;">vault-node-4</strong>
+                <div style="font-size: 11px; color: var(--text-muted);">Port: 9004 · 27 Chunks</div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 6px;">
+              <button class="btn btn-sm btn-danger" id="btnKill4" onclick="killNode(4, 'vault-node-4')" aria-label="button">☠️ Kill Node</button>
+              <button class="btn btn-sm btn-secondary" onclick="injectLatency(4, 'vault-node-4')" aria-label="Secondary Action">⏱️ +2000ms</button>
+            </div>
+          </div>
+
+          <div class="node-row" id="rowNode5">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <div class="node-status-dot" id="dot5"></div>
+              <div>
+                <strong style="font-size: 14px;">vault-node-5</strong>
+                <div style="font-size: 11px; color: var(--text-muted);">Port: 9005 · 27 Chunks</div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 6px;">
+              <button class="btn btn-sm btn-danger" id="btnKill5" onclick="killNode(5, 'vault-node-5')" aria-label="button">☠️ Kill Node</button>
+              <button class="btn btn-sm btn-secondary" onclick="injectLatency(5, 'vault-node-5')" aria-label="Secondary Action">⏱️ +2000ms</button>
+            </div>
+          </div>
+
+          <div class="node-row" id="rowNode6">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <div class="node-status-dot" id="dot6"></div>
+              <div>
+                <strong style="font-size: 14px;">vault-node-6</strong>
+                <div style="font-size: 11px; color: var(--text-muted);">Port: 9006 · 27 Chunks</div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 6px;">
+              <button class="btn btn-sm btn-danger" id="btnKill6" onclick="killNode(6, 'vault-node-6')" aria-label="button">☠️ Kill Node</button>
+              <button class="btn btn-sm btn-secondary" onclick="injectLatency(6, 'vault-node-6')" aria-label="Secondary Action">⏱️ +2000ms</button>
             </div>
           </div>
         </div>
@@ -342,7 +401,7 @@
               <option>financial_ledger_2025.zip</option>
             </select>
           </div>
-          <button class="btn btn-danger" style="width: 100%;" onclick="injectBitRot()" aria-label="button">Corrupt Chunk #1 on Node Beta</button>
+          <button class="btn btn-danger" style="width: 100%;" onclick="injectBitRot()" aria-label="button">Corrupt Chunk #1 on vault-node-2</button>
         </div>
       </div>
 
@@ -430,8 +489,8 @@
       showToast(`Corrupted chunk #1 checksum for "${file}". Scrubber detecting...`, 'danger');
       appendLog(`[CORRUPTION] Bit-flip injected into Chunk #1 of ${file}`, 'err');
       setTimeout(() => {
-        appendLog(`[SCRUBBER] SHA-256 mismatch detected on Node Beta for ${file}`, 'warn');
-        appendLog(`[HEALER] Corrupted chunk discarded. Clean replica pulled from Node Alpha.`, 'ok');
+        appendLog(`[SCRUBBER] SHA-256 mismatch detected on vault-node-2 for ${file}`, 'warn');
+        appendLog(`[HEALER] Corrupted chunk discarded. Clean replica pulled from vault-node-1.`, 'ok');
         showToast(`✅ Anti-Bit-Rot Scrubber repaired "${file}" seamlessly!`, 'success');
       }, 1000);
     }
@@ -442,7 +501,7 @@
         const btn = document.getElementById(`btnKill${i}`);
         btn.textContent = '☠️ Kill Node';
         btn.className = 'btn btn-sm btn-danger';
-        const name = i === 1 ? 'Node Alpha' : i === 2 ? 'Node Beta' : 'Node Gamma';
+        const name = i === 1 ? 'vault-node-1' : i === 2 ? 'vault-node-2' : 'vault-node-3';
         btn.onclick = () => killNode(i, name);
       });
       appendLog('[SYSTEM] All nodes restored to HEALTHY state.', 'ok');

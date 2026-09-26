@@ -6,74 +6,78 @@
   <title>Vault — Fault-Tolerant Distributed Object Storage Platform</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <script src="vault-storage.js"></script>
   <style>
     /* ============================================================
        VAULT DISTINCTIVE PALETTE — WARM OBSIDIAN & SOLAR TANGERINE & EMERALD MINT
        ============================================================ */
+    
+    /* ============================================================
+       VAULT DISTINCTIVE PALETTE — PRODUCTION GRADE
+       ============================================================ */
     :root {
-      --primary: #FF5722;          /* Solar Coral / Tangerine Flame */
-      --primary-hover: #F4511E;
-      --primary-glow: rgba(255, 87, 34, 0.4);
-      --secondary: #00E5FF;        /* Electric Holographic Cyan */
-      --accent: #9C27B0;           /* Royal Amethyst Violet */
-      --success: #00E676;          /* Mint Emerald */
-      --warning: #FFB300;          /* Solar Amber Gold */
-      --danger: #FF1744;           /* Radiant Crimson */
-      --info: #00B0FF;
+      --bg: #0a0e27;
+      --surface: #0f1629;
+      --border: rgba(255, 255, 255, 0.05);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --cyan: #00d9ff;
+      --purple: #7b2cbf;
+      --emerald: #10b981;
+      
+      --primary: var(--cyan);
+      --primary-hover: #00b8d9;
+      --primary-glow: rgba(0, 217, 255, 0.4);
+      --secondary: var(--purple);
+      --accent: var(--cyan);
+      --success: var(--emerald);
+      --warning: #F59E0B;
+      --danger: #EF4444;
 
-      /* Dark: Luxurious Warm Espresso Slate & Obsidian */
-      --bg: #0C0E14;
-      --bg-card: rgba(22, 26, 38, 0.82);
-      --bg-card-hover: rgba(30, 35, 52, 0.95);
-      --surface: #151824;
-      --surface-border: rgba(255, 255, 255, 0.08);
-      --surface-border-hover: rgba(255, 87, 34, 0.4);
-      --text: #FDFEFE;
-      --text-muted: #A0A5B5;
-      --text-dim: #6B7280;
-      --glass: rgba(18, 21, 31, 0.75);
-      --glass-blur: blur(24px);
-      --gradient-brand: linear-gradient(135deg, #FF5722 0%, #E91E63 50%, #9C27B0 100%);
-      --gradient-emerald: linear-gradient(135deg, #00E676 0%, #00B0FF 100%);
-      --gradient-gold: linear-gradient(135deg, #FFB300 0%, #FF5722 100%);
-      --shadow-glow: 0 10px 40px -8px rgba(255, 87, 34, 0.35);
-      --shadow-card: 0 14px 40px -6px rgba(0, 0, 0, 0.45);
-      --radius-sm: 8px;
-      --radius-md: 14px;
-      --radius-lg: 20px;
-      --radius-xl: 28px;
-      --font: 'Plus Jakarta Sans', sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
+      --bg-dark: var(--bg);
+      --surface-color: var(--surface);
+      --border-color: var(--border);
+      --text-primary: var(--text-main);
+      --text-secondary: var(--text-muted);
+      --text-tertiary: #64748b;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.5);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.5);
+      --shadow-lg: 0 10px 15px rgba(0,0,0,0.5);
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+      --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      
+      /* Base scale */
+      --spacing-1: 4px;
+      --spacing-2: 8px;
+      --spacing-3: 12px;
+      --spacing-4: 16px;
+      --spacing-6: 24px;
+      --spacing-8: 32px;
+      --spacing-12: 48px;
+      --spacing-16: 64px;
     }
 
-    [data-theme="light"] {
-      --bg: #FBF9F5;
-      --bg-card: rgba(255, 255, 255, 0.92);
-      --bg-card-hover: #FFFFFF;
-      --surface: #FFFFFF;
-      --surface-border: rgba(12, 14, 20, 0.08);
-      --surface-border-hover: rgba(255, 87, 34, 0.45);
-      --text: #11141D;
-      --text-muted: #525866;
-      --text-dim: #8A92A6;
-      --glass: rgba(255, 255, 255, 0.88);
-      --gradient-brand: linear-gradient(135deg, #FF5722 0%, #D81B60 50%, #8E24AA 100%);
-      --shadow-glow: 0 10px 32px -6px rgba(255, 87, 34, 0.25);
-      --shadow-card: 0 10px 30px -4px rgba(0, 0, 0, 0.06);
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: var(--font);
       background-color: var(--bg);
-      color: var(--text);
+      color: var(--text-main);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 0;
       min-height: 100vh;
-      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      line-height: 1.5;
     }
+    
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
 
     /* Ambient Warm Orbs */
     .ambient-bg {
@@ -660,32 +664,36 @@
       <div class="cluster-preview-grid">
         <div class="node-preview-card healthy" id="cardNode1">
           <div class="node-head">
-            <div class="node-name">Node Alpha</div>
+            <div class="node-name">vault-node-1</div>
             <span class="node-status-badge badge-healthy" id="badgeNode1">HEALTHY</span>
           </div>
           <div class="node-meta"><span>Port: 9001</span><span>51.0 MB / 10 GB</span></div>
           <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 28%;"></div></div>
-          <button class="node-action-btn" onclick="toggleNodeSandbox(1)" aria-label="Node Action">☠️ Kill Node Alpha</button>
+          <button class="node-action-btn" onclick="toggleNodeSandbox(1)" aria-label="Node Action">☠️ Kill vault-node-1</button>
         </div>
 
         <div class="node-preview-card healthy" id="cardNode2">
           <div class="node-head">
-            <div class="node-name">Node Beta</div>
+            <div class="node-name">vault-node-2</div>
             <span class="node-status-badge badge-healthy" id="badgeNode2">HEALTHY</span>
           </div>
           <div class="node-meta"><span>Port: 9002</span><span>51.0 MB / 10 GB</span></div>
           <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 28%;"></div></div>
-          <button class="node-action-btn" onclick="toggleNodeSandbox(2)" aria-label="Node Action">☠️ Kill Node Beta</button>
+          <button class="node-action-btn" onclick="toggleNodeSandbox(2)" aria-label="Node Action">☠️ Kill vault-node-2</button>
         </div>
 
         <div class="node-preview-card healthy" id="cardNode3">
           <div class="node-head">
-            <div class="node-name">Node Gamma</div>
+            <div class="node-name">vault-node-3</div>
             <span class="node-status-badge badge-healthy" id="badgeNode3">HEALTHY</span>
           </div>
           <div class="node-meta"><span>Port: 9003</span><span>51.0 MB / 10 GB</span></div>
           <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 28%;"></div></div>
-          <button class="node-action-btn" onclick="toggleNodeSandbox(3)" aria-label="Node Action">☠️ Kill Node Gamma</button>
+          <button class="node-action-btn" onclick="toggleNodeSandbox(3)" aria-label="Node Action">☠️ Kill vault-node-3</button>
+          <button class="node-action-btn" onclick="toggleNodeSandbox(4)" aria-label="Node Action">☠️ Kill vault-node-4</button>
+          <button class="node-action-btn" onclick="toggleNodeSandbox(5)" aria-label="Node Action">☠️ Kill vault-node-5</button>
+          <button class="node-action-btn" onclick="toggleNodeSandbox(6)" aria-label="Node Action">☠️ Kill vault-node-6</button>
+
         </div>
       </div>
 
@@ -855,7 +863,7 @@
         showToast('SHA-256 Block hashes computed! Replicating to 3 nodes...', 'info');
       }, 600);
       setTimeout(() => {
-        showToast('✅ 10MB File stored & replicated across Node Alpha, Beta, Gamma!', 'success');
+        showToast('✅ 10MB File stored & replicated across vault-node-1 through vault-node-6!', 'success');
       }, 1400);
     }
   </script>
