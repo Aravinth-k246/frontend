@@ -599,11 +599,12 @@
     </ul>
 
     <div class="nav-actions">
-      <button class="theme-toggle" id="themeToggle" title="Toggle Theme" onclick="toggleTheme()">☀️</button>
+      <button class="theme-toggle" id="themeToggle" title="Toggle Theme" onclick="toggleTheme()" aria-label="Toggle Theme">☀️</button>
       <a href="login.html" class="btn btn-secondary" id="authBtn">🔑 Sign In</a>
       <a href="dashboard.html" class="btn btn-primary">🚀 Launch App</a>
     </div>
   </nav>
+  <main id="main-content">
 
   <header class="hero">
     <div class="hero-badge">
@@ -664,7 +665,7 @@
           </div>
           <div class="node-meta"><span>Port: 9001</span><span>51.0 MB / 10 GB</span></div>
           <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 28%;"></div></div>
-          <button class="node-action-btn" onclick="toggleNodeSandbox(1)">☠️ Kill Node Alpha</button>
+          <button class="node-action-btn" onclick="toggleNodeSandbox(1)" aria-label="Node Action">☠️ Kill Node Alpha</button>
         </div>
 
         <div class="node-preview-card healthy" id="cardNode2">
@@ -674,7 +675,7 @@
           </div>
           <div class="node-meta"><span>Port: 9002</span><span>51.0 MB / 10 GB</span></div>
           <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 28%;"></div></div>
-          <button class="node-action-btn" onclick="toggleNodeSandbox(2)">☠️ Kill Node Beta</button>
+          <button class="node-action-btn" onclick="toggleNodeSandbox(2)" aria-label="Node Action">☠️ Kill Node Beta</button>
         </div>
 
         <div class="node-preview-card healthy" id="cardNode3">
@@ -684,7 +685,7 @@
           </div>
           <div class="node-meta"><span>Port: 9003</span><span>51.0 MB / 10 GB</span></div>
           <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width: 28%;"></div></div>
-          <button class="node-action-btn" onclick="toggleNodeSandbox(3)">☠️ Kill Node Gamma</button>
+          <button class="node-action-btn" onclick="toggleNodeSandbox(3)" aria-label="Node Action">☠️ Kill Node Gamma</button>
         </div>
       </div>
 
@@ -693,8 +694,8 @@
           <span>🟢</span> All 3 nodes online. Replication factor: <strong>3× Quorum</strong>. Zero data loss guarantee.
         </div>
         <div style="display: flex; gap: 10px;">
-          <button class="btn btn-sm btn-primary" onclick="simulateUpload()">📤 Test 10MB Payload Shard</button>
-          <button class="btn btn-sm btn-secondary" onclick="restoreAllNodes()">🔄 Restore All</button>
+          <button class="btn btn-sm btn-primary" onclick="simulateUpload()" aria-label="Primary Action">📤 Test 10MB Payload Shard</button>
+          <button class="btn btn-sm btn-secondary" onclick="restoreAllNodes()" aria-label="Secondary Action">🔄 Restore All</button>
         </div>
       </div>
     </div>
@@ -765,6 +766,7 @@
     </div>
   </section>
 
+    </main>
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-copy"><strong>Vault Platform</strong> © 2026. Distributed Object Storage System.</div>

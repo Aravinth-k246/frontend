@@ -338,7 +338,7 @@
 
       <div class="topbar-right">
         <div class="supabase-badge"><span>⚡</span> 9/9 Nodes Online</div>
-        <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">☀️</button>
+        <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle Theme">☀️</button>
         <a href="files.html" class="btn btn-primary">+ Upload Object</a>
         <a href="login.html" class="btn btn-secondary" id="userBtn">👤 Sign In</a>
       </div>
@@ -381,7 +381,7 @@
         <div class="panel-header">
           <div class="panel-title"><span>🕸️</span> Live 9-Node Multi-Region Topology Graph</div>
           <div style="display: flex; gap: 8px;">
-            <button class="btn btn-sm btn-secondary" onclick="triggerScrubber()">🔍 Run Scrubber</button>
+            <button class="btn btn-sm btn-secondary" onclick="triggerScrubber()" aria-label="Secondary Action">🔍 Run Scrubber</button>
             <a href="chaos.html" class="btn btn-sm btn-secondary" style="color: var(--danger);">⚡ Chaos Lab</a>
           </div>
         </div>
@@ -414,7 +414,7 @@
       <div class="panel-card">
         <div class="panel-header">
           <div class="panel-title"><span>📡</span> Real-Time Cluster Events</div>
-          <button class="btn btn-sm btn-secondary" onclick="clearActivity()">Clear</button>
+          <button class="btn btn-sm btn-secondary" onclick="clearActivity()" aria-label="Secondary Action">Clear</button>
         </div>
 
         <div class="activity-list" id="activityList">
@@ -502,7 +502,7 @@
           <td>${isSmall ? 'Single Block (&lt; 5MB)' : f.chunksCount + ' Chunks (4MB)'}</td>
           <td><span class="badge ${f.status === 'Healthy' ? 'badge-success' : 'badge-warning'}">${isSmall ? '🌐 9× All Nodes' : f.replicationFactor + '× Quorum'}</span></td>
           <td>
-            <button class="btn btn-sm btn-secondary" onclick="window.vaultStore.downloadFile('${f.id}')">⬇️ Download</button>
+            <button class="btn btn-sm btn-secondary" onclick="window.vaultStore.downloadFile('${f.id}')" aria-label="Secondary Action">⬇️ Download</button>
           </td>
         `;
         tbody.appendChild(tr);
